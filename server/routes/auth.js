@@ -67,6 +67,7 @@ authRouter.get("/api/find-user/:id", async (req, res) => {
     try {
         const { id } = req.params.id;
         const user = await User.findById(id);
+       console.log("user ",typeof id)
         if (!user) 
             return res.status(409)
             .json({ message: "No User found With that Specific ID" });
@@ -76,7 +77,7 @@ authRouter.get("/api/find-user/:id", async (req, res) => {
 catch (e) {
          handleMongooseError(res, e)
 
-        res.status(500).json({ error: e.message });
+       return res.status(500).json({ error: e.message });
     }
 });
 
